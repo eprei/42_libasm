@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-extern size_t ft_strlen(const char *str);
+size_t ft_strlen(const char *s);
 char *ft_strcpy(char *restrict dst, const char *restrict src);
+int ft_strcmp(const char *s1, const char *s2);
 
 int main (){
         printf("****\tstrlen vs ft_strlen\t****\n");
@@ -37,7 +38,22 @@ int main (){
         printf("%p bufs_dst_ft_strcpy[2]:\t%s\n\n", bufs_dst_ft_strcpy[2], bufs_dst_ft_strcpy[2]);
 
         printf("****\tstrcmp vs ft_strcmp\t****\n");
-
+        printf("strcmp(Hello, Hello):\t\t%d\n", strcmp("Hello", "Hello"));
+        printf("ft_strcmp(Hello, Hello):\t%d\n\n", ft_strcmp("Hello", "Hello"));
+        printf("strcmp(Hello, World):\t\t%d\n", strcmp("Hello", "World"));
+        printf("ft_strcmp(Hello, World):\t%d\n\n", ft_strcmp("Hello", "World"));
+        printf("strcmp(Hello, 42):\t\t%d\n", strcmp("Hello", "42"));
+        printf("ft_strcmp(Hello, 42):\t\t%d\n\n", ft_strcmp("Hello", "42"));
+        printf("strcmp(42, 42):\t\t\t%d\n", strcmp("42", "42"));
+        printf("ft_strcmp(42, 42):\t\t%d\n\n", ft_strcmp("42", "42"));
+        printf("strcmp(42, 21):\t\t\t%d\n", strcmp("42", "21"));
+        printf("ft_strcmp(42, 21):\t\t%d\n\n", ft_strcmp("42", "21"));
+        printf("strcmp(21, 0):\t\t\t%d\n", strcmp("21", ""));
+        printf("ft_strcmp(21, 0):\t\t%d\n\n", ft_strcmp("21", ""));
+        printf("strcmp(,):\t\t\t%d\n", strcmp("", ""));
+        printf("ft_strcmp(,):\t\t\t%d\n", ft_strcmp("", ""));
+        printf("strcmp(, 42):\t\t\t%d\n", strcmp("", "42"));
+        printf("ft_strcmp(, 42):\t\t\t%d\n", ft_strcmp("", "42"));
 
         printf("****\twrite vs ft_write\t****\n");
 
