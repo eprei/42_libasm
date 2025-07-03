@@ -5,21 +5,19 @@ ft_strcmp:
         mov rax, 0          ; initialize return value to 0
 
 loop:
-        mov al, [rdi]       ; load the first character from s1 to be subtracted by the first character of s2
-        mov dl, [rdi]       ; load the first character from s1 to later check if is the null terminator
-        sub al, [rsi]       ; subtract the first character from s2
-        cmp al, 0           ; check if the result is zero
-        jg greater          ; if greater than zero, s1 > s2
-        jl minor            ; if less than zero, s1 < s2
+        mov al, [rdi]       ; load one character from s1
+        mov dl, [rsi]       ; load one character from s2
+        cmp al, dl          ; compare characters from s1 and s2
+        ja greater          ; if s1 > s2, jump to greater
+        jb minor            ; if s1 < s2, jump to minor
 
         ; characters are equal
         ; check if is the end of string s1
-        cmp dl, 0           ; check if the current character of s1 is the null terminator
+        cmp al, 0           ; check if it is the null terminator
         je exit             ; if it is, we reached the end of s1 and we exit
 
         ; check if is the end of string s2
-        mov cl, [rsi]       ; load the character from s2 to a register to check if it is the null terminator
-        cmp cl, 0           ; check if it is the null terminator
+        cmp dl, 0           ; check if it is the null terminator
         je exit             ; if it is, if we reached the end of s2 and we exit
 
         inc rdi             ; move to the next character in s1
