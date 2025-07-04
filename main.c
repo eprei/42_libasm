@@ -9,6 +9,10 @@
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 
+#define FILE_WRITE "file_write.txt"
+#define FILE_FT_WRITE "file_ft_write.txt"
+#define FILE_READ "file_read.txt"
+
 size_t ft_strlen(const char *s);
 char *ft_strcpy(char *restrict dst, const char *restrict src);
 int ft_strcmp(const char *s1, const char *s2);
@@ -96,8 +100,8 @@ void test_ft_strcmp(void) {
 }
 
 void open_files(int *fd_file_write, int *fd_file_ft_write) {
-  *fd_file_write = open("file_write", O_RDWR | O_CREAT | O_TRUNC, 0644);
-  *fd_file_ft_write = open("file_ft_write", O_RDWR | O_CREAT | O_TRUNC, 0644);
+  *fd_file_write = open(FILE_WRITE, O_RDWR | O_CREAT | O_TRUNC, 0644);
+  *fd_file_ft_write = open(FILE_FT_WRITE, O_RDWR | O_CREAT | O_TRUNC, 0644);
 
   if (*fd_file_write == -1) {
     printf("Error opening fd_file_write\n");
@@ -127,7 +131,7 @@ void reset_test(int *fd_file_write, int *fd_file_ft_write) {
 void compare_files(int *fd_file_write, int *fd_file_ft_write) {
   char bufs_read[2][10001];
 
-  memset(bufs_read, 0, sizeof(bufs_read));
+  memset(bufs_read[0], 0, sizeof(bufs_read[0]));
   memset(bufs_read[1], 0, sizeof(bufs_read[1]));
   lseek(*fd_file_write, 0, SEEK_SET);
   lseek(*fd_file_ft_write, 0, SEEK_SET);
@@ -169,6 +173,8 @@ void test_ft_write(void) {
   compare_files(&fd_file_write, &fd_file_ft_write);
 
   close_files(&fd_file_write, &fd_file_ft_write);
+  remove(FILE_WRITE);
+  remove(FILE_FT_WRITE);
 }
 
 void test_ft_read(void) {
