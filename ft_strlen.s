@@ -14,6 +14,5 @@ loop:
         jmp loop        ; continue looping
 
 exit_loop:
-        mov rdi, rbx    ; move the length into rdi for return value
         mov rax, rbx    ; move the length into rax for return value
         ret             ; return from the function
